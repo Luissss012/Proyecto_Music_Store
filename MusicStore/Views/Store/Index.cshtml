@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MusicStore.Models.Genre>
+
+@{
+    ViewBag.Title = "Tienda";
+}
+
+<div class="music-store-card">
+    <h2>Catálogo de géneros</h2>
+
+    <p>
+        Explora nuestra colección musical seleccionando uno de los géneros disponibles.
+    </p>
+</div>
+
+<ul class="music-store-list">
+    @foreach (var genre in Model)
+    {
+        <li>
+            @Html.ActionLink(
+                     genre.Name,
+                     "Browse",
+                     new { genre = genre.Name }
+                 )
+        </li>
+    }
+</ul>

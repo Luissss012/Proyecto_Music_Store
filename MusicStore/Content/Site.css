@@ -1,0 +1,78 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* =========================
+   MUSIC STORE
+   ========================= */
+
+body {
+    background-color: #f5f5f5;
+}
+
+.body-content {
+    min-height: 80vh;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.music-store-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.music-store-list {
+    list-style: none;
+    padding: 0;
+}
+
+.music-store-list li {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        margin-bottom: 10px;
+}
+
+.music-store-list li a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: 500;
+}
+
+.music-store-list li:hover {
+            background-color: #f0f0f0;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 15px 0;
+}

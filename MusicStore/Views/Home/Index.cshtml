@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<div class="music-store-card text-center">
+
+    <h1>ASP.NET MVC Music Store</h1>
+
+    <p class="lead">
+        Explora nuestro catálogo musical por géneros y descubre los álbumes disponibles.
+    </p>
+
+    <p>
+        Este proyecto implementa una tienda de música utilizando
+        ASP.NET MVC, Razor y una arquitectura basada en el patrón
+        Modelo-Vista-Controlador.
+    </p>
+
+    <p>
+        @Html.ActionLink(
+                 "Explorar catálogo",
+                 "Index",
+                 "Store",
+                 null,
+                 new { @class = "btn btn-dark btn-lg" }
+             )
+    </p>
+
+</div>

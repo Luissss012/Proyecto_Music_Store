@@ -1,0 +1,39 @@
+﻿@model MusicStore.Models.Album
+
+@{
+    ViewBag.Title = "Detalle del álbum";
+}
+
+<div class="music-store-card">
+
+    <h2>Detalle del álbum</h2>
+
+    <hr />
+
+    <p>
+        <strong>Título:</strong>
+        @Model.Title
+    </p>
+
+    <p>
+        <strong>Género:</strong>
+        @Model.Genre.Name
+    </p>
+
+</div>
+
+<p>
+    @Html.ActionLink(
+            "← Volver a " + Model.Genre.Name,
+            "Browse",
+            new { genre = Model.Genre.Name },
+            new { @class = "btn btn-outline-dark" }
+        )
+
+    @Html.ActionLink(
+            "Volver a la tienda",
+            "Index",
+            null,
+            new { @class = "btn btn-dark" }
+        )
+</p>
