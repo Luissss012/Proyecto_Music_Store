@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using MusicStore.Models;
 
@@ -6,66 +7,40 @@ namespace MusicStore.Controllers
 {
     public class StoreController : Controller
     {
+        private MusicStoreEntities storeDB = new MusicStoreEntities();
+
         public ActionResult Index()
         {
-            var genres = new List<Genre>
-            {
-                new Genre { Name = "Rock" },
-                new Genre { Name = "Jazz" },
-                new Genre { Name = "Disco" }
-            };
+            var genres = storeDB.Genres.ToList();
 
             return View(genres);
         }
 
         public ActionResult Browse(string genre)
         {
-            var genreModel = new Genre
-            {
-                Name = genre,
-                Albums = new List<Album>
-        {
-            new Album
-            {
-                Title = genre + " - Álbum 1",
-                Genre = new Genre { Name = genre }
-            },
-            new Album
-            {
-                Title = genre + " - Álbum 2",
-                Genre = new Genre { Name = genre }
-            },
-            new Album
-            {
-                Title = genre + " - Álbum 3",
-                Genre = new Genre { Name = genre }
-            }
-        }
-            };
+            var genreModel = storeDB.Genres
+                .Include(g => g.Albums)
+                .Single(g => g.Name == genre);
 
             return View(genreModel);
         }
 
-        public ActionResult Details(int? id, string genre)
+        public ActionResult Details(int? id)
         {
             if (!id.HasValue)
             {
                 return RedirectToAction("Index");
             }
 
-            if (string.IsNullOrEmpty(genre))
-            {
-                genre = "Rock";
-            }
+            var album = storeDB.Albums
+                .Include(a => a.Genre)
+                .Include(a => a.Artist)
+                .SingleOrDefault(a => a.AlbumId == id.Value);
 
-            var album = new Album
+            if (album == null)
             {
-                Title = genre + " - Álbum " + id.Value,
-                Genre = new Genre
-                {
-                    Name = genre
-                }
-            };
+                return HttpNotFound();
+            }
 
             return View(album);
         }

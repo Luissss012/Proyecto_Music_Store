@@ -14,22 +14,16 @@
 </div>
 
 <ul class="music-store-list">
-    @{
-        int id = 1;
-    }
-
     @foreach (var album in Model.Albums)
     {
         <li>
             @Html.ActionLink(
                      album.Title,
                      "Details",
-                     new { id = id, genre = Model.Name },
+                     new { id = album.AlbumId },
                      null
                  )
         </li>
-
-        id++;
     }
 </ul>
 
