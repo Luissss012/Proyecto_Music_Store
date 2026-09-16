@@ -1,0 +1,41 @@
+﻿@model MusicStore.Models.Album
+
+@{
+    ViewBag.Title = "Eliminar álbum";
+}
+
+<h2>Eliminar álbum</h2>
+
+<h3>¿Está seguro de que desea eliminar este álbum?</h3>
+
+<div>
+    <h4>Álbum</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>Artista</dt>
+        <dd>@Html.DisplayFor(model => model.Artist.Name)</dd>
+
+        <dt>Género</dt>
+        <dd>@Html.DisplayFor(model => model.Genre.Name)</dd>
+
+        <dt>Título</dt>
+        <dd>@Html.DisplayFor(model => model.Title)</dd>
+
+        <dt>Precio</dt>
+        <dd>@Html.DisplayFor(model => model.Price)</dd>
+
+        <dt>URL de portada</dt>
+        <dd>@Html.DisplayFor(model => model.AlbumArtUrl)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>
