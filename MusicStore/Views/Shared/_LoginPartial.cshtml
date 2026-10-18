@@ -1,0 +1,19 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <div class="navbar-nav align-items-sm-center">
+        @if (User.IsInRole("Administrator")) { @Html.ActionLink("Administración", "Index", "StoreManager", null, new { @class = "nav-link" }) }
+        <span class="navbar-text me-3">Hola, @User.Identity.Name</span>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+        }
+    </div>
+}
+else
+{
+    <div class="navbar-nav">
+        @Html.ActionLink("Crear cuenta", "Register", "Account", null, new { @class = "nav-link" })
+        @Html.ActionLink("Iniciar sesión", "Login", "Account", null, new { @class = "nav-link" })
+    </div>
+}

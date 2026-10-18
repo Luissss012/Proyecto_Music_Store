@@ -19,7 +19,8 @@ namespace MusicStore
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Database.SetInitializer(new SampleData());
+            // Apply schema changes explicitly through reviewed EF migrations.
+            Database.SetInitializer<MusicStoreEntities>(null);
         }
     }
 }
