@@ -28,5 +28,8 @@ namespace MusicStore.Models
         public Genre Genre { get; set; }
 
         public Artist Artist { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

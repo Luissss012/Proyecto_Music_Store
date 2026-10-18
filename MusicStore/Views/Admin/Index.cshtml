@@ -1,0 +1,13 @@
+﻿@{ ViewBag.Title = "Administración"; }
+<h1>Administración</h1>
+<p>@(User.IsInRole("Owner") ? "Gestiona el catálogo y los permisos de la tienda." : "Gestiona los álbumes, artistas y géneros de la tienda.")</p>
+<div class="row g-3">
+@foreach (var entry in new[] { new[] { "StoreManager", "Álbumes", "Crear, editar y consultar discos." }, new[] { "Artists", "Artistas", "Mantener los artistas disponibles para nuevos álbumes." }, new[] { "Genres", "Géneros", "Organizar las categorías del catálogo." }, new[] { "Users", "Usuarios y permisos", "Asignar o retirar permisos de administrador." } })
+{
+    if (entry[0] == "Users" && !User.IsInRole("Owner")) { continue; }
+    <div class="col-sm-6"><div class="card h-100"><div class="card-body">
+        <h2 class="h4">@entry[1]</h2><p>@entry[2]</p>
+        @Html.ActionLink("Abrir " + entry[1].ToLower(), "Index", entry[0], null, new { @class = "btn btn-primary" })
+    </div></div></div>
+}
+</div>

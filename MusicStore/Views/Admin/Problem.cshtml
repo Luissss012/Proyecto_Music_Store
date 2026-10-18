@@ -1,0 +1,5 @@
+﻿@model string
+@{ ViewBag.Title = "Operación no completada"; }
+<h1>Operación no completada</h1>
+<div class="alert alert-warning" role="alert">@Model</div>
+@Html.ActionLink("Volver a administración", "Index", "Admin", null, new { @class = "btn btn-primary" })

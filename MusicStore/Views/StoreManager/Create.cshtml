@@ -5,6 +5,8 @@
 }
 
 <h2>Crear álbum</h2>
+<p>@Html.ActionLink("Crear artista", "Create", "Artists", null, new { target = "_blank", rel = "noopener" }) · @Html.ActionLink("Crear género", "Create", "Genres", null, new { target = "_blank", rel = "noopener" }) · @Html.ActionLink("Panel de administración", "Index", "Admin")</p>
+<p>Los nuevos registros se abren en otra pestaña. Después de guardarlos, recarga este formulario para actualizar las listas; los datos sin guardar podrían perderse.</p>
 
 @using (Html.BeginForm())
 {

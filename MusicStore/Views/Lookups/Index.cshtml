@@ -1,0 +1,19 @@
+﻿@model MusicStore.Models.LookupList
+@{ ViewBag.Title = "Administrar " + ViewBag.Label; }
+<h1>@ViewBag.Label</h1>
+@Html.Partial("_AdminMessages")
+<p>@Html.ActionLink("Nuevo registro", "Create", null, new { @class = "btn btn-primary" }) @Html.ActionLink("Panel de administración", "Index", "Admin", null, new { @class = "btn btn-outline-secondary" })</p>
+@using (Html.BeginForm("Index", (string)ViewContext.RouteData.Values["controller"], FormMethod.Get, new { @class = "d-flex gap-2 mb-3" }))
+{ <label for="search" class="visually-hidden">Buscar por nombre</label><input id="search" name="search" value="@Model.Search" maxlength="160" class="form-control" placeholder="Buscar por nombre" /><button class="btn btn-outline-primary">Buscar</button> }
+<div class="table-responsive"><table class="table"><thead><tr><th>Nombre</th>@if (ViewBag.IsGenre) { <th>Descripción</th> }<th>Álbumes</th><th>Acciones</th></tr></thead><tbody>
+@foreach (var item in Model.Items)
+{
+<tr><td>@item.Name</td>@if (ViewBag.IsGenre) { <td>@item.Description</td> }<td>@item.AlbumCount</td><td>
+@Html.ActionLink("Editar", "Edit", new { id = item.Id }) · @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })</td></tr>
+}
+</tbody></table></div>
+@if (Model.Items.Count == 0) { <p>No hay resultados.</p> }
+<nav aria-label="Páginas"><span>Página @Model.Page</span>
+@if (Model.Page > 1) { @Html.ActionLink("Anterior", "Index", new { page = Model.Page - 1, search = Model.Search }, new { @class = "btn btn-link" }) }
+@if (Model.HasNext) { @Html.ActionLink("Siguiente", "Index", new { page = Model.Page + 1, search = Model.Search }, new { @class = "btn btn-link" }) }
+</nav>

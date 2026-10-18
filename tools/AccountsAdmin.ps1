@@ -1,4 +1,4 @@
-﻿param([ValidateSet('setup','promote')][string]$Action = 'setup', [string]$Email)
+﻿param([ValidateSet('setup','promote','owner')][string]$Action = 'setup', [string]$Email)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path $PSScriptRoot -Parent
 $appBin = Join-Path $projectRoot 'MusicStore/bin'
@@ -12,8 +12,8 @@ $compileArgs += Join-Path $PSScriptRoot 'AccountsAdmin.cs'
 & $compiler @compileArgs
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo compilar la herramienta. Compila primero MusicStore.' }
 Copy-Item (Join-Path $projectRoot 'MusicStore/Web.config') ($adminExe + '.config')
-if ($Action -eq 'promote') {
+if ($Action -in @('promote','owner')) {
     if ([string]::IsNullOrWhiteSpace($Email)) { $Email = Read-Host 'Correo de la cuenta registrada que será administradora' }
-    & $adminExe promote $Email
+    & $adminExe $Action $Email
 } else { & $adminExe setup }
 if ($LASTEXITCODE -ne 0) { throw 'La operación de cuentas no terminó correctamente.' }

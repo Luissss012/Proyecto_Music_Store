@@ -1,0 +1,23 @@
+﻿@model MusicStore.Models.UserList
+@{ ViewBag.Title = "Usuarios y permisos"; }
+<h1>Usuarios y permisos</h1>
+@Html.Partial("_AdminMessages")
+<p>Solo el propietario puede asignar o retirar el permiso de administrador. Los administradores gestionan el catálogo; no pueden cambiar permisos.</p>
+<p>@Html.ActionLink("Panel de administración", "Index", "Admin") · @Html.ActionLink("Historial de cambios de permisos", "Audit")</p>
+@using (Html.BeginForm("Index", "Users", FormMethod.Get, new { @class = "d-flex gap-2 mb-3" }))
+{ <label for="search" class="visually-hidden">Correo</label><input name="search" id="search" value="@Model.Search" maxlength="254" placeholder="Buscar por correo" class="form-control" /><button class="btn btn-outline-primary">Buscar</button> }
+<div class="table-responsive"><table class="table"><thead><tr><th>Correo</th><th>Permiso</th><th>Acción</th></tr></thead><tbody>
+@foreach (var user in Model.Items)
+{
+    <tr><td>@user.Email</td><td>@(user.IsOwner ? "Propietario" : user.IsAdministrator ? "Administrador" : "Usuario")</td><td>
+    @if (user.IsOwner) { <span>Propietario · cuenta protegida</span> }
+    else if (user.IsCurrentUser) { <span>Tu cuenta · no puedes cambiar tus propios permisos</span> }
+    else { @Html.ActionLink(user.IsAdministrator ? "Retirar administración" : "Asignar administración", "ChangeRole", new { id = user.Id }) }
+    </td></tr>
+}
+</tbody></table></div>
+@if (Model.Items.Count == 0) { <p>No hay resultados.</p> }
+<nav aria-label="Páginas"><span>Página @Model.Page</span>
+@if (Model.Page > 1) { @Html.ActionLink("Anterior", "Index", new { page = Model.Page - 1, search = Model.Search }, new { @class = "btn btn-link" }) }
+@if (Model.HasNext) { @Html.ActionLink("Siguiente", "Index", new { page = Model.Page + 1, search = Model.Search }, new { @class = "btn btn-link" }) }
+</nav>

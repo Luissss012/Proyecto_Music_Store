@@ -5,10 +5,13 @@
 }
 
 <h2>Editar álbum</h2>
+<p>@Html.ActionLink("Crear artista", "Create", "Artists", null, new { target = "_blank", rel = "noopener" }) · @Html.ActionLink("Crear género", "Create", "Genres", null, new { target = "_blank", rel = "noopener" }) · @Html.ActionLink("Panel de administración", "Index", "Admin")</p>
+<p>Si creas un artista o género en otra pestaña, recarga este formulario para actualizar las listas antes de editar los datos.</p>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <input type="hidden" name="Version" value="@Convert.ToBase64String(Model.RowVersion)" />
 
     <div class="form-horizontal">
         <h4>Álbum</h4>

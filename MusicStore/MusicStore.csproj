@@ -322,4 +322,33 @@
     <Content Include="Views\Account\AccessDenied.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminControllerBase.cs" />
+    <Compile Include="Controllers\LookupsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Models\AdminViewModels.cs" />
+    <Compile Include="Services\RoleAdministration.cs" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Problem.cshtml" />
+    <Content Include="Views\Lookups\Delete.cshtml" />
+    <Content Include="Views\Lookups\Form.cshtml" />
+    <Content Include="Views\Lookups\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminMessages.cshtml" />
+    <Content Include="Views\Users\Audit.cshtml" />
+    <Content Include="Views\Users\ChangeRole.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\202610180555028_AdminCatalogIntegrity.cs" />
+    <Compile Include="Migrations\202610180555028_AdminCatalogIntegrity.Designer.cs">
+      <DependentUpon>202610180555028_AdminCatalogIntegrity.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Migrations\202610180555028_AdminCatalogIntegrity.resx">
+      <DependentUpon>202610180555028_AdminCatalogIntegrity.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\admin.css" />
+  </ItemGroup>
 </Project>

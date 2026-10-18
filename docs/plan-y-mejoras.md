@@ -23,13 +23,13 @@ La planificación especifica CRUD de Album en el Sprint 4 y registro/login/logou
 
 El tutorial utiliza listas de artistas y géneros existentes para crear álbumes (hojas 64 y 65 del PDF; páginas impresas 63 y 64). La unidad 7 configura el rol y su usuario mediante una herramienta externa de configuración ASP.NET (hojas 83 a 86 del PDF), antes de proteger el controlador. No exige una pantalla de gestión de usuarios dentro de la tienda.
 
-Actualmente la promoción se realiza con tools/AccountsAdmin.ps1. Las listas del formulario de álbumes no permiten crear nuevos artistas o géneros desde la interfaz.
+La versión original del Sprint 5 promovía administradores con tools/AccountsAdmin.ps1 y solo permitía elegir artistas/géneros existentes. La ampliación administrativa solicitada posteriormente ya agrega gestión web de estas funciones; ver docs/ampliacion-administrativa.md.
 
-## Mejoras propuestas por el usuario pendientes de decisión
+## Ampliación administrativa solicitada por el usuario
 
-Estas mejoras no están implementadas ni forman parte del alcance aceptado del Sprint 5. Conviene abordarlas en una entrega administrativa separada, antes del carrito si el usuario decide ampliar el alcance, y registrar la ampliación para revisión del responsable académico.
+El usuario autorizó implementar estas mejoras antes del Sprint 6. Están implementadas en una entrega separada del Sprint 5, con comprobaciones automáticas correctas y aceptación manual confirmada por el usuario el 18 de octubre de 2026. La ampliación queda documentada para su revisión por el responsable académico.
 
-1. Gestión de usuarios accesible solo a Administrator: buscar cuentas existentes y asignar o retirar el rol administrativo. Conservar al menos un administrador y evitar que alguien elimine su propio acceso accidentalmente. Mantener la herramienta local para aprovisionar al primero.
+1. Gestión de usuarios accesible solo al propietario Owner (que también conserva Administrator): buscar cuentas existentes y asignar o retirar el rol administrativo. Los administradores normales solo gestionan el catálogo y no pueden modificar al propietario. Conservar al menos un administrador y evitar que alguien elimine su propio acceso accidentalmente. Mantener la herramienta local para aprovisionar al primero.
 2. Gestión de artistas: crear y editar desde administración; evitar nombres vacíos o duplicados y proteger relaciones con álbumes al eliminar.
 3. Gestión de géneros: crear y editar desde administración; validar nombres y proteger relaciones al eliminar.
 4. Accesos a estas operaciones desde administración y el formulario de álbumes, con pruebas de autorización, validación e integridad.

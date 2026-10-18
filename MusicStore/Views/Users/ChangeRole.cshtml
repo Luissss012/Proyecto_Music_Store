@@ -1,0 +1,16 @@
+﻿@model MusicStore.Models.RoleChangeForm
+@{ ViewBag.Title = "Confirmar cambio de permisos"; }
+<h1>Confirmar cambio de permisos</h1>
+<p>Cuenta: <strong>@ViewBag.Email</strong></p>
+<div class="alert alert-warning">@(Model.MakeAdministrator ? "Esta persona podrá gestionar álbumes, artistas y géneros. No podrá administrar usuarios ni cambiar permisos." : "Esta persona perderá el acceso a la administración. Su cuenta normal se conservará.")</div>
+@using (Html.BeginForm("ChangeRole", "Users", FormMethod.Post, new { @class = "col-md-7" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Stamp)
+    @Html.HiddenFor(m => m.MakeAdministrator)
+    <div class="mb-3"><label for="Password">Confirma con tu contraseña de propietario</label><input type="password" name="Password" id="Password" autocomplete="current-password" required maxlength="128" class="form-control" /></div>
+    <button class="btn btn-danger" type="submit">@(Model.MakeAdministrator ? "Confirmar asignación" : "Confirmar retiro")</button>
+    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-link" })
+}
+<p class="mt-3">Se registrará el cambio en el historial. La cuenta afectada deberá volver a iniciar sesión.</p>

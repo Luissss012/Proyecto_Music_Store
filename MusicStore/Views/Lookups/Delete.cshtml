@@ -1,0 +1,17 @@
+﻿@model MusicStore.Models.LookupForm
+@{ ViewBag.Title = "Eliminar · " + ViewBag.Label; }
+<h1>@ViewBag.Title</h1>
+@Html.ValidationSummary(false, "", new { @class = "text-danger", role = "alert" })
+<p>Registro: <strong>@Model.Name</strong></p><p>Álbumes asociados: @Model.AlbumCount</p>
+@if (Model.AlbumCount > 0) { <div class="alert alert-warning">No se puede eliminar mientras tenga álbumes asociados. Puedes editar su nombre o reasignar los álbumes primero.</div> }
+else
+{
+    <p>Esta acción eliminará el registro. Confirma para continuar.</p>
+    using (Html.BeginForm("Delete", (string)ViewContext.RouteData.Values["controller"], new { id = Model.Id }, FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Version)
+        <button class="btn btn-danger" type="submit">Confirmar eliminación</button>
+    }
+}
+@Html.ActionLink("Volver a la lista", "Index", null, new { @class = "btn btn-link" })

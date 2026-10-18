@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicStore.Models
 {
@@ -9,6 +11,10 @@ namespace MusicStore.Models
     {
         public int ArtistId { get; set; }
 
+        [Required, StringLength(160), Index("UX_Artist_Name", IsUnique = true)]
         public string Name { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

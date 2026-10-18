@@ -1,8 +1,8 @@
 ﻿@if (Request.IsAuthenticated)
 {
-    <div class="navbar-nav align-items-sm-center">
-        @if (User.IsInRole("Administrator")) { @Html.ActionLink("Administración", "Index", "StoreManager", null, new { @class = "nav-link" }) }
-        <span class="navbar-text me-3">Hola, @User.Identity.Name</span>
+    <div class="navbar-nav flex-lg-row align-items-lg-center gap-2 account-navigation">
+        @if (User.IsInRole("Administrator")) { @Html.ActionLink("Administración", "Index", "Admin", null, new { @class = "nav-link" }) }
+        <span class="navbar-text account-name" title="@User.Identity.Name">Hola, @User.Identity.Name</span>
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
         {
             @Html.AntiForgeryToken()

@@ -1,0 +1,7 @@
+﻿@model IEnumerable<MusicStore.Controllers.RoleAuditRow>
+@{ ViewBag.Title = "Historial de permisos"; }
+<h1>Historial de permisos</h1><p>Últimos 100 cambios realizados desde la administración web. Horas en UTC.</p>
+<div class="table-responsive"><table class="table"><thead><tr><th>Fecha UTC</th><th>Administrador</th><th>Cuenta afectada</th><th>Cambio</th></tr></thead><tbody>
+@foreach (var row in Model) { <tr><td>@row.CreatedUtc.ToString("yyyy-MM-dd HH:mm:ss")</td><td>@row.Actor</td><td>@row.Target</td><td>@(row.Granted ? "Asignó administración" : "Retiró administración")</td></tr> }
+</tbody></table></div>
+@Html.ActionLink("Volver a usuarios", "Index")

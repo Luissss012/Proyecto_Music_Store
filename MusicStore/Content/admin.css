@@ -1,0 +1,6 @@
+/* Keep long account identifiers and catalog text inside narrow viewports. */
+.account-navigation { min-width: 0; max-width: 100%; flex-wrap: wrap; }
+.account-name { display: block; max-width: 16rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.account-navigation form { flex-shrink: 0; }
+.navbar-collapse { min-width: 0; }
+.table td { overflow-wrap: anywhere; }
