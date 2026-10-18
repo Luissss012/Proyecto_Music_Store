@@ -16,10 +16,21 @@ namespace MusicStore.Models
         public DbSet<Album> Albums { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Artist> Artists { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Cart>().HasRequired(c => c.Album).WithMany()
+                .HasForeignKey(c => c.AlbumId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<OrderDetail>().HasRequired(d => d.Album).WithMany()
+                .HasForeignKey(d => d.AlbumId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<OrderDetail>().HasRequired(d => d.Order).WithMany(o => o.OrderDetails)
+                .HasForeignKey(d => d.OrderId).WillCascadeOnDelete(false);
+            modelBuilder.Entity<Order>().Property(o => o.Total).HasPrecision(18, 2);
+            modelBuilder.Entity<OrderDetail>().Property(d => d.UnitPrice).HasPrecision(18, 2);
             modelBuilder.Entity<Album>().HasRequired(a => a.Artist).WithMany()
                 .HasForeignKey(a => a.ArtistId).WillCascadeOnDelete(false);
             modelBuilder.Entity<Album>().HasRequired(a => a.Genre).WithMany(g => g.Albums)

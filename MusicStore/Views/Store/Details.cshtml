@@ -19,6 +19,14 @@
         <strong>Género:</strong>
         @Model.Genre.Name
     </p>
+    <p><strong>Artista:</strong> @Model.Artist.Name</p>
+    <p><strong>Precio:</strong> @Model.Price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)</p>
+    @using (Html.BeginForm("AddToCart", "ShoppingCart", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="albumId" value="@Model.AlbumId" />
+        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+    }
 
 </div>
 

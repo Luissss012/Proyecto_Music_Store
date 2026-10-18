@@ -1,0 +1,10 @@
+﻿@model MusicStore.Models.ShoppingCartViewModel
+@{ ViewBag.Title = "Tu carrito"; }
+<h1>Tu carrito</h1>
+<p>Revisa los álbumes y ajusta sus cantidades. Los precios se calculan con el catálogo actual.</p>
+<p id="cart-network-error" class="alert alert-warning" role="alert" hidden></p>
+<div id="cart-region" aria-live="polite" aria-busy="false">
+    @Html.Partial("_Cart", Model)
+</div>
+<p>@Html.ActionLink("Seguir comprando", "Index", "Store", null, new { @class = "btn btn-outline-primary" })</p>
+@section scripts { @Scripts.Render("~/bundles/cart") }

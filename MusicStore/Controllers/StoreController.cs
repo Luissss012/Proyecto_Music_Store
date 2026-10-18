@@ -20,9 +20,17 @@ namespace MusicStore.Controllers
         {
             var genreModel = storeDB.Genres
                 .Include(g => g.Albums)
-                .Single(g => g.Name == genre);
+                .SingleOrDefault(g => g.Name == genre);
+
+            if (genreModel == null) return HttpNotFound();
 
             return View(genreModel);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing) storeDB.Dispose();
+            base.Dispose(disposing);
         }
 
         public ActionResult Details(int? id)

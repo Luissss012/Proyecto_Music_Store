@@ -1,0 +1,54 @@
+﻿@model MusicStore.Models.ShoppingCartViewModel
+@using System.Globalization
+<section data-cart-snapshot="true" data-revision="@Model.Revision" data-count="@Model.Count" data-total="@Model.Total.ToString("0.00", CultureInfo.InvariantCulture)">
+@if (!string.IsNullOrEmpty(Model.Message))
+{ <div class="alert @(Model.HasError ? "alert-warning" : "alert-success")" role="@(Model.HasError ? "alert" : "status")">@Model.Message</div> }
+@if (Model.Items.Count == 0)
+{
+    <div class="music-store-card"><h2 class="h4">Tu carrito está vacío</h2><p>Encuentra un álbum en la tienda y agrégalo para comenzar.</p></div>
+}
+else
+{
+    <div class="table-responsive"><table class="table align-middle">
+        <caption>Álbumes de tu carrito. Cantidades permitidas: de 1 a 99.</caption>
+        <thead><tr><th scope="col">Álbum</th><th scope="col">Precio unitario</th><th scope="col">Cantidad</th><th scope="col">Subtotal</th><th scope="col">Acciones</th></tr></thead>
+        <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr data-record-id="@item.RecordId">
+                <td>@Html.ActionLink(item.Title, "Details", "Store", new { id = item.AlbumId }, null)<br /><span class="text-secondary">@item.Artist</span></td>
+                <td>@item.UnitPrice.ToString("0.00", CultureInfo.InvariantCulture)</td>
+                <td>
+                @using (Html.BeginForm("UpdateQuantity", "ShoppingCart", FormMethod.Post, new { @class = "cart-form d-flex gap-2 align-items-center" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@item.RecordId" />
+                    <input type="hidden" name="version" value="@item.Version" />
+                    <label class="visually-hidden" for="quantity-@item.RecordId">Cantidad de @item.Title</label>
+                    <input id="quantity-@item.RecordId" name="quantity" type="number" value="@item.Quantity" min="1" max="99" step="1" required class="form-control cart-quantity" />
+                    <button type="submit" class="btn btn-outline-primary btn-sm">Actualizar</button>
+                }
+                </td>
+                <td>@item.Subtotal.ToString("0.00", CultureInfo.InvariantCulture)</td>
+                <td>
+                @using (Html.BeginForm("RemoveFromCart", "ShoppingCart", FormMethod.Post, new { @class = "cart-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@item.RecordId" />
+                    <input type="hidden" name="version" value="@item.Version" />
+                    <button type="submit" class="btn btn-outline-danger btn-sm" aria-label="Eliminar @item.Title del carrito">Eliminar</button>
+                }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table></div>
+    <div class="music-store-card"><p>Unidades: <strong id="cart-count">@Model.Count</strong></p><p class="h4">Total: <strong id="cart-total">@Model.Total.ToString("0.00", CultureInfo.InvariantCulture)</strong></p></div>
+    using (Html.BeginForm("EmptyCart", "ShoppingCart", FormMethod.Post, new { @class = "cart-form mb-3", data_confirm = "¿Quieres quitar todos los álbumes de este carrito?" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="revision" value="@Model.Revision" />
+        <button type="submit" class="btn btn-outline-danger">Vaciar carrito</button>
+    }
+}
+</section>

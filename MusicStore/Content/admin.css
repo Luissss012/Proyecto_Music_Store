@@ -4,3 +4,4 @@
 .account-navigation form { flex-shrink: 0; }
 .navbar-collapse { min-width: 0; }
 .table td { overflow-wrap: anywhere; }
+.cart-quantity { width: 5.5rem; min-width: 5.5rem; }

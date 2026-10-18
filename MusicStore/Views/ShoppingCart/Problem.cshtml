@@ -1,0 +1,4 @@
+﻿@model string
+@{ ViewBag.Title = "Revisar el carrito"; }
+<h1>Revisar el carrito</h1><div class="alert alert-warning" role="alert">@Model</div>
+@Html.ActionLink("Volver al carrito", "Index", "ShoppingCart", null, new { @class = "btn btn-primary" })

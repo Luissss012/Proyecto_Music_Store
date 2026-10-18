@@ -76,6 +76,8 @@ namespace MusicStore.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            // A different account using this browser must not inherit the previous cart.
+            Session.Remove(MusicStore.Services.ShoppingCartService.SessionKey);
             HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
