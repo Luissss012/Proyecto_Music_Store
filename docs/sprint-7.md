@@ -83,4 +83,10 @@ El usuario confirmó que todas las validaciones funcionan y autorizó el commit.
 
 ## Aceptación manual
 
+### Corrección posterior: datos de contacto
+
+Se agregaron reglas Unicode para rechazar números en nombres y apellidos, conservando tildes, apóstrofes y guiones. Dirección debe contener letras y al menos cinco caracteres; ciudad y departamento admiten números acompañados de letras (por ejemplo, 16 de Septiembre). País rechaza números. Teléfono admite entre 7 y 15 dígitos, con prefijo + inicial opcional y separadores entre grupos. Las reglas se ejecutan en servidor y en navegadores compatibles con propiedades Unicode; los navegadores antiguos conservan la validación del servidor.
+
+Compilación con vistas correcta y 20 casos de validación aprobados mediante `powershell -NoProfile -File tools\Test-CheckoutValidation.ps1`. La batería HTTP ampliada confirmó rechazo de datos inválidos sin crear órdenes ni perder el carrito; la repetición completa sin el depurador aprobó 69 pruebas, incluido el fallo SQL provocado, la recuperación posterior y los envíos concurrentes. Se verificó que quedaron cero cuentas, álbumes y triggers temporales de estas pruebas. El usuario aceptó estas correcciones y autorizó su commit y publicación en GitHub el 27 de octubre de 2026. Se guardan separadas del commit original del Sprint 7. No modifican pedidos históricos ni el esquema de SQL Server.
+
 El usuario confirmó en este chat que todo funcionó completamente y solicitó guardar el Sprint 7 antes de realizar correcciones adicionales de presentación en la confirmación del pedido. Esas correcciones se mantendrán separadas de esta entrega aceptada.

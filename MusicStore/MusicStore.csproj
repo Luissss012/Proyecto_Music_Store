@@ -362,6 +362,7 @@
     <Content Include="Views\ShoppingCart\_Cart.cshtml" />
     <Content Include="Views\ShoppingCart\Problem.cshtml" />
     <Content Include="Scripts\shopping-cart.js" />
+    <Content Include="Scripts\checkout-validation.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\202610180642380_Sprint6ShoppingCart.cs" />

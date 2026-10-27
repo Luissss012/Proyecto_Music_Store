@@ -35,4 +35,4 @@ else
     <p>El carrito está vacío.</p>
     @Html.ActionLink("Volver al carrito", "Index", "ShoppingCart", null, new { @class = "btn btn-primary" })
 }
-@section scripts { @Scripts.Render("~/bundles/jqueryval") }
+@section scripts { @Scripts.Render("~/bundles/jqueryval", "~/bundles/checkout") }

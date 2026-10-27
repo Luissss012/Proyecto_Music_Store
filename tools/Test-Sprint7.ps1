@@ -123,7 +123,7 @@ SELECT (SELECT AlbumId FROM dbo.Albums WHERE Title LIKE @prefix ORDER BY AlbumId
  Add $a $album1|Out-Null;Add $a $album1|Out-Null;Add $a $album2|Out-Null
  $form=Page '/Checkout/AddressAndPayment' $a
  Assert-Test ([int]$form.StatusCode -eq 200 -and $form.Content.Contains('34.67')) 'Checkout displays current authoritative total'
- foreach($case in @(@{FirstName='   '},@{Address=('x'*201)},@{Email='not-an-email'},@{Phone='-------'},@{PromoCode='WRONG'},@{PostalCode='!'})){
+ foreach($case in @(@{FirstName='   '},@{FirstName='Luis123'},@{LastName='Perez7'},@{FirstName="Luis`nAndres"},@{City='12345'},@{Country='Guatemala7'},@{State='@@@'},@{Address='12345'},@{Address=('x'*201)},@{Email='not-an-email'},@{Phone='-------'},@{Phone='555+55555'},@{Phone='1234567890123456'},@{PromoCode='WRONG'},@{PostalCode='!'})){
   $p=Post '/Checkout/AddressAndPayment' $a (CheckoutBody $form $emailA $case)
   Assert-Test ([int]$p.StatusCode -eq 400 -and (OrderCount $idA)-eq 0 -and (Count (Cart $a))-eq 3) ('Invalid checkout preserves cart: '+($case.Keys -join ','))
  }
