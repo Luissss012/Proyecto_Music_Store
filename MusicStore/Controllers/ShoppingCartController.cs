@@ -17,9 +17,7 @@ namespace MusicStore.Controllers
             {
                 if (service == null)
                 {
-                    var id = Session[ShoppingCartService.SessionKey] as string;
-                    if (id == null) { id = ShoppingCartService.NewIdentity(); Session[ShoppingCartService.SessionKey] = id; }
-                    service = new ShoppingCartService(id);
+                    service = new ShoppingCartService(Session[ShoppingCartService.SessionKey] as string);
                 }
                 return service;
             }
@@ -28,6 +26,14 @@ namespace MusicStore.Controllers
         {
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetNoStore();
+            var resolved = CartAccountService.Resolve(HttpContext);
+            if (!resolved.Success)
+            {
+                Response.StatusCode = 409; Response.TrySkipIisCustomErrors = true;
+                context.Result = Request.IsAjaxRequest() ? (ActionResult)Content(resolved.Error, "text/plain")
+                    : View("~/Views/ShoppingCart/Problem.cshtml", (object)resolved.Error);
+                return;
+            }
             base.OnActionExecuting(context);
         }
         [HttpGet]

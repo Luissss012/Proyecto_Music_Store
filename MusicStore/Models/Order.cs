@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicStore.Models
 {
-    // Sprint 6 prepares persistence. Checkout and ownership checks arrive in Sprint 7.
     public class Order
     {
         public int OrderId { get; set; }
-        [Required, StringLength(128)] public string UserId { get; set; }
+        [Required, StringLength(128), Index("IX_Order_UserId")] public string UserId { get; set; }
+        [Required, StringLength(64), Index("UX_Order_CheckoutToken", IsUnique = true)] public string CheckoutToken { get; set; }
         [Required, StringLength(80)] public string FirstName { get; set; }
         [Required, StringLength(80)] public string LastName { get; set; }
         [Required, StringLength(200)] public string Address { get; set; }

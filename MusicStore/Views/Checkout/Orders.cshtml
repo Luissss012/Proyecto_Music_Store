@@ -1,0 +1,17 @@
+﻿@model MusicStore.Models.OrderListViewModel
+@using System.Globalization
+@{ ViewBag.Title = "Mis pedidos"; }
+<h1>Mis pedidos</h1>
+@if (Model.Orders.Count == 0) { <p>Todavía no hay pedidos en esta página.</p> }
+else
+{
+    <div class="table-responsive"><table class="table"><thead><tr><th>Orden</th><th>Fecha UTC</th><th>Total</th><th>Acciones</th></tr></thead><tbody>
+    @foreach (var order in Model.Orders)
+    { <tr><td>#@order.OrderId</td><td>@order.OrderDate.ToString("yyyy-MM-dd HH:mm")</td><td>@order.Total.ToString("0.00", CultureInfo.InvariantCulture)</td><td>@Html.ActionLink("Ver detalle", "Complete", new { id = order.OrderId })</td></tr> }
+    </tbody></table></div>
+}
+<nav aria-label="Páginas"><span>Página @Model.Page</span>
+@if (Model.Page > 1) { @Html.ActionLink("Anterior", "Orders", new { page = Model.Page - 1 }, new { @class = "btn btn-link" }) }
+@if (Model.HasNext) { @Html.ActionLink("Siguiente", "Orders", new { page = Model.Page + 1 }, new { @class = "btn btn-link" }) }
+</nav>
+@Html.ActionLink("Ir a la tienda", "Index", "Store", null, new { @class = "btn btn-outline-primary" })

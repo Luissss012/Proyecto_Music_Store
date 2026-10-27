@@ -1,0 +1,12 @@
+﻿@model MusicStore.Models.ShoppingCartViewModel
+@using System.Globalization
+<section class="music-store-card" aria-label="Resumen de compra" data-checkout-count="@Model.Count" data-checkout-total="@Model.Total.ToString("0.00", CultureInfo.InvariantCulture)">
+    <h2 class="h4">Resumen de la compra</h2>
+    <div class="table-responsive"><table class="table"><thead><tr><th>Álbum</th><th>Cantidad</th><th>Precio unitario</th><th>Subtotal</th></tr></thead><tbody>
+    @foreach (var item in Model.Items)
+    {
+        <tr><td>@item.Title <span class="text-secondary">· @item.Artist</span></td><td>@item.Quantity</td><td>@item.UnitPrice.ToString("0.00", CultureInfo.InvariantCulture)</td><td>@item.Subtotal.ToString("0.00", CultureInfo.InvariantCulture)</td></tr>
+    }
+    </tbody></table></div>
+    <p class="h4">Total: @Model.Total.ToString("0.00", CultureInfo.InvariantCulture)</p>
+</section>

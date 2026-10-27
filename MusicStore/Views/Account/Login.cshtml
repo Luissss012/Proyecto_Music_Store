@@ -9,6 +9,6 @@
     <div class="mb-3">@Html.LabelFor(m => m.Email) @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", autocomplete = "username" })</div>
     <div class="mb-3">@Html.LabelFor(m => m.Password) @Html.PasswordFor(m => m.Password, new { @class = "form-control", autocomplete = "current-password", maxlength = "128" })</div>
     <button class="btn btn-primary" type="submit">Entrar</button>
-    @Html.ActionLink("Crear cuenta", "Register", null, new { @class = "btn btn-link" })
+    @Html.ActionLink("Crear cuenta", "Register", new { returnUrl = ViewBag.ReturnUrl }, new { @class = "btn btn-link" })
 }
 @section scripts { @Scripts.Render("~/bundles/jqueryval") }

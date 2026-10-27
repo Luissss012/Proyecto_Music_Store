@@ -232,6 +232,7 @@ try {
  Assert-Test ($beforeCatalog -eq $afterCatalog) 'Original albums preserved exactly'
  Write-Host ('TOTAL: ' + $results.Count + ' passed')
 } finally {
+ Query MusicStore 'DELETE c FROM dbo.Carts c JOIN dbo.UserCarts uc ON c.CartId=uc.CartId JOIN MusicStoreAccounts.dbo.AspNetUsers u ON u.Id=uc.UserId WHERE u.Email IN (@a,@b); DELETE uc FROM dbo.UserCarts uc JOIN MusicStoreAccounts.dbo.AspNetUsers u ON u.Id=uc.UserId WHERE u.Email IN (@a,@b);' @{a=$emailA;b=$emailB} | Out-Null
  Query MusicStore 'DELETE FROM dbo.Albums WHERE Title LIKE @prefix; DELETE FROM dbo.Artists WHERE Name LIKE @prefix; DELETE FROM dbo.Genres WHERE Name LIKE @prefix;' @{prefix=($tag+'%')} | Out-Null
  Query MusicStoreAccounts 'DELETE FROM dbo.AdminRoleAudit WHERE ActorId IN (SELECT Id FROM dbo.AspNetUsers WHERE Email IN (@a,@b)); DELETE ur FROM dbo.AspNetUserRoles ur JOIN dbo.AspNetUsers u ON ur.UserId=u.Id WHERE u.Email IN (@a,@b); DELETE FROM dbo.AspNetUsers WHERE Email IN (@a,@b);' @{a=$emailA;b=$emailB} | Out-Null
 }

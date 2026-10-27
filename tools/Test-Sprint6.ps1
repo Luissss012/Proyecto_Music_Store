@@ -174,6 +174,7 @@ END CATCH;
  Assert-Test ($before -eq $after) 'Original catalog preserved exactly'
  Write-Host ('TOTAL: '+$passed+' passed')
 } finally {
+ Query MusicStore 'DELETE c FROM dbo.Carts c JOIN dbo.UserCarts uc ON c.CartId=uc.CartId JOIN MusicStoreAccounts.dbo.AspNetUsers u ON u.Id=uc.UserId WHERE u.Email=@email; DELETE uc FROM dbo.UserCarts uc JOIN MusicStoreAccounts.dbo.AspNetUsers u ON u.Id=uc.UserId WHERE u.Email=@email;' @{email=$testEmail} | Out-Null
  Query MusicStore 'DELETE c FROM dbo.Carts c JOIN dbo.Albums a ON c.AlbumId=a.AlbumId WHERE a.Title LIKE @prefix; DELETE FROM dbo.Albums WHERE Title LIKE @prefix;' @{prefix=($tag+'%')} | Out-Null
  Query MusicStoreAccounts 'DELETE ur FROM dbo.AspNetUserRoles ur JOIN dbo.AspNetUsers u ON ur.UserId=u.Id WHERE u.Email=@email; DELETE FROM dbo.AspNetUsers WHERE Email=@email;' @{email=$testEmail} | Out-Null
 }

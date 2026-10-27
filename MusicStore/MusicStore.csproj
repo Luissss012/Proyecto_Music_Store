@@ -372,4 +372,25 @@
       <DependentUpon>202610180642380_Sprint6ShoppingCart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\UserCart.cs" />
+    <Compile Include="Models\CheckoutViewModels.cs" />
+    <Compile Include="Services\CartAccountService.cs" />
+    <Compile Include="Services\CheckoutService.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
+    <Content Include="Views\Checkout\AddressAndPayment.cshtml" />
+    <Content Include="Views\Checkout\_Summary.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
+    <Content Include="Views\Checkout\Orders.cshtml" />
+    <Content Include="Views\Checkout\Problem.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\202610272226288_Sprint7CheckoutAndSavedCarts.cs" />
+    <Compile Include="Migrations\202610272226288_Sprint7CheckoutAndSavedCarts.Designer.cs">
+      <DependentUpon>202610272226288_Sprint7CheckoutAndSavedCarts.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Migrations\202610272226288_Sprint7CheckoutAndSavedCarts.resx">
+      <DependentUpon>202610272226288_Sprint7CheckoutAndSavedCarts.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

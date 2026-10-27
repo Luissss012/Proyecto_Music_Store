@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using MusicStore.Models;
+using MusicStore.Services;
 
 namespace MusicStore.Controllers
 {
@@ -15,11 +16,18 @@ namespace MusicStore.Controllers
         private UserManager<ApplicationUser> Manager { get { return manager ?? (manager = AccountsContext.CreateManager(db)); } }
 
         [AllowAnonymous]
-        public ActionResult Register() { return View(new RegisterModel()); }
+        public ActionResult Register(string returnUrl)
+        {
+            if (Request.IsAuthenticated) return RedirectToAction("Index", "Home");
+            ViewBag.ReturnUrl = Url.IsLocalUrl(returnUrl) ? returnUrl : null;
+            return View(new RegisterModel());
+        }
 
         [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterModel model)
+        public async Task<ActionResult> Register(RegisterModel model, string returnUrl)
         {
+            if (Request.IsAuthenticated) return RedirectToAction("Index", "Home");
+            ViewBag.ReturnUrl = Url.IsLocalUrl(returnUrl) ? returnUrl : null;
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email.Trim(), Email = model.Email.Trim() };
@@ -33,7 +41,7 @@ namespace MusicStore.Controllers
                         {
                             transaction.Commit();
                             TempData["AccountMessage"] = "Cuenta creada. Ahora puedes iniciar sesión.";
-                            return RedirectToAction("Login");
+                            return RedirectToAction("Login", new { returnUrl = ViewBag.ReturnUrl });
                         }
                     }
                     foreach (var error in result.Errors) ModelState.AddModelError("", error);
@@ -45,6 +53,7 @@ namespace MusicStore.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (Request.IsAuthenticated) return RedirectToAction("Index", "Home");
             ViewBag.ReturnUrl = Url.IsLocalUrl(returnUrl) ? returnUrl : null;
             return View(new LoginModel());
         }
@@ -52,6 +61,7 @@ namespace MusicStore.Controllers
         [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginModel model, string returnUrl)
         {
+            if (Request.IsAuthenticated) return RedirectToAction("Index", "Home");
             ViewBag.ReturnUrl = Url.IsLocalUrl(returnUrl) ? returnUrl : null;
             if (ModelState.IsValid)
             {
@@ -61,6 +71,12 @@ namespace MusicStore.Controllers
                     if (await Manager.CheckPasswordAsync(user, model.Password))
                     {
                         await Manager.ResetAccessFailedCountAsync(user.Id);
+                        var cart = CartAccountService.SignIn(HttpContext, user.Id);
+                        if (!cart.Success)
+                        {
+                            ModelState.AddModelError("", cart.Error);
+                            return View(model);
+                        }
                         var identity = await Manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                         HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
                         if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
@@ -78,6 +94,7 @@ namespace MusicStore.Controllers
         {
             // A different account using this browser must not inherit the previous cart.
             Session.Remove(MusicStore.Services.ShoppingCartService.SessionKey);
+            Session.Remove(CartAccountService.OwnerSessionKey);
             HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

@@ -60,7 +60,7 @@ try {
  try {
   $sqlConnection.Open()
   $cleanup = $sqlConnection.CreateCommand()
-  $cleanup.CommandText = 'DELETE ur FROM dbo.AspNetUserRoles ur JOIN dbo.AspNetUsers u ON ur.UserId=u.Id WHERE u.Email=@email; DELETE FROM dbo.AspNetUsers WHERE Email=@email;'
+  $cleanup.CommandText = 'DELETE c FROM MusicStore.dbo.Carts c JOIN MusicStore.dbo.UserCarts uc ON c.CartId=uc.CartId JOIN dbo.AspNetUsers u ON u.Id=uc.UserId WHERE u.Email=@email; DELETE uc FROM MusicStore.dbo.UserCarts uc JOIN dbo.AspNetUsers u ON u.Id=uc.UserId WHERE u.Email=@email; DELETE ur FROM dbo.AspNetUserRoles ur JOIN dbo.AspNetUsers u ON ur.UserId=u.Id WHERE u.Email=@email; DELETE FROM dbo.AspNetUsers WHERE Email=@email;'
   $cleanup.Parameters.AddWithValue('@email',$testEmail) | Out-Null
   $cleanup.ExecuteNonQuery() | Out-Null
  } finally { $sqlConnection.Dispose() }

@@ -31,9 +31,13 @@ namespace MusicStore.Services
         private static CartOperationResult Result(int status, string message) { return new CartOperationResult { Status = status, Message = message }; }
         private bool Lock()
         {
-            return db.Database.SqlQuery<int>(@"DECLARE @result int; EXEC @result=sys.sp_getapplock
+            return AcquireLock(db, cartId);
+        }
+        internal static bool AcquireLock(MusicStoreEntities context, string identity)
+        {
+            return context.Database.SqlQuery<int>(@"DECLARE @result int; EXEC @result=sys.sp_getapplock
                 @Resource=@resource,@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=5000;
-                SELECT @result;", new SqlParameter("@resource", "MusicStore.Cart." + cartId)).Single() >= 0;
+                SELECT @result;", new SqlParameter("@resource", "MusicStore.Cart." + identity)).Single() >= 0;
         }
         private static byte[] Version(string version)
         {
@@ -43,11 +47,15 @@ namespace MusicStore.Services
         }
         public ShoppingCartViewModel GetCart()
         {
-            var lines = db.Carts.AsNoTracking().Where(c => c.CartId == cartId).OrderBy(c => c.RecordId)
+            return ReadCart(db, cartId);
+        }
+        internal static ShoppingCartViewModel ReadCart(MusicStoreEntities context, string identity)
+        {
+            var lines = context.Carts.AsNoTracking().Where(c => c.CartId == identity).OrderBy(c => c.RecordId)
                 .Select(c => new { c.RecordId, c.AlbumId, c.Count, c.RowVersion, c.Album.Title, Artist = c.Album.Artist.Name, c.Album.Price }).ToList();
             var items = lines.Select(c => new CartLineViewModel { RecordId = c.RecordId, AlbumId = c.AlbumId, Quantity = c.Count,
                 Title = c.Title, Artist = c.Artist, UnitPrice = c.Price, Version = Convert.ToBase64String(c.RowVersion) }).ToList();
-            var fingerprint = cartId + "|" + string.Join("|", items.Select(c => c.RecordId + ":" + c.Version + ":" + c.UnitPrice.ToString(CultureInfo.InvariantCulture)));
+            var fingerprint = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(new { identity, items });
             string revision;
             using (var hash = SHA256.Create()) revision = BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(fingerprint))).Replace("-", "");
             return new ShoppingCartViewModel { Items = items, Count = items.Sum(c => c.Quantity), Total = items.Sum(c => c.Subtotal), Revision = revision };
