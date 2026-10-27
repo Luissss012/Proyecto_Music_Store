@@ -15,7 +15,7 @@ Consultar estos documentos antes de cada sprint. Si ya no están disponibles, so
 - Sprint 5: cuentas, roles y StoreManager protegido; comprobaciones automáticas correctas y pruebas manuales aceptadas por el usuario.
 - Sprint 6 implementado: carrito anónimo, cantidades, total y AJAX (AC-08 y AC-09). Compilación y pruebas automáticas correctas; aceptación manual y autorización del commit confirmadas por el usuario el 18 de octubre de 2026. Ver docs/sprint-6.md.
 - Sprint 7 implementado: migración y combinación del carrito anónimo, recuperación por cuenta, checkout FREE y órdenes protegidas (AC-10 a AC-13). 215 comprobaciones automáticas y compilación correctas; validaciones finales aceptadas y commit autorizado por el usuario el 27 de octubre de 2026. Ver docs/sprint-7.md.
-- Sprint 8 pendiente: resumen del carrito, menú de géneros, más vendidos, responsive, errores, documentación y presentación (AC-14 a AC-18).
+- Sprint 8 implementado: resumen del carrito, menú de géneros, más vendidos por unidades, diseño responsive, portadas y catálogo de demo, errores controlados, documentación y publicación Release (AC-14 a AC-18). Aceptación manual y publicación en GitHub autorizadas por el usuario el 27 de octubre de 2026; 304 comprobaciones aprobadas. Ver docs/sprint-8.md y docs/demo-final.md.
 
 ## Comprobación de alcance administrativo
 

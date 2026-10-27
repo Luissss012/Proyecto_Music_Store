@@ -11,7 +11,7 @@ namespace MusicStore.Controllers
 
         public ActionResult Index()
         {
-            var genres = storeDB.Genres.ToList();
+            var genres = storeDB.Genres.OrderBy(g => g.Name).ToList();
 
             return View(genres);
         }
@@ -19,7 +19,7 @@ namespace MusicStore.Controllers
         public ActionResult Browse(string genre)
         {
             var genreModel = storeDB.Genres
-                .Include(g => g.Albums)
+                .Include(g => g.Albums.Select(a => a.Artist))
                 .SingleOrDefault(g => g.Name == genre);
 
             if (genreModel == null) return HttpNotFound();

@@ -394,4 +394,49 @@
       <DependentUpon>202610272226288_Sprint7CheckoutAndSavedCarts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\NavigationController.cs" />
+    <Content Include="Views\Shared\_GenreMenu.cshtml" />
+    <Content Include="Views\Shared\_CartSummary.cshtml" />
+    <Content Include="Views\Shared\_Albums.cshtml" />
+    <Content Include="Scripts\store-ui.js" />
+    <Content Include="Content\storefront.css" />
+    <Content Include="Content\covers\default.svg" />
+    <Content Include="Content\covers\demo-01.svg" />
+    <Content Include="Content\covers\demo-02.svg" />
+    <Content Include="Content\covers\demo-03.svg" />
+    <Content Include="Content\covers\demo-04.svg" />
+    <Content Include="Content\covers\demo-05.svg" />
+    <Content Include="Content\covers\demo-06.svg" />
+    <Content Include="Content\covers\demo-07.svg" />
+    <Content Include="Content\covers\demo-08.svg" />
+    <Content Include="Content\covers\demo-09.svg" />
+    <Content Include="Content\covers\demo-10.svg" />
+    <Content Include="Content\covers\demo-11.svg" />
+    <Content Include="Content\covers\demo-12.svg" />
+    <Content Include="Content\covers\demo-13.svg" />
+    <Content Include="Content\covers\demo-14.svg" />
+    <Content Include="Content\covers\demo-15.svg" />
+    <Content Include="Content\covers\demo-16.svg" />
+    <Content Include="Content\covers\demo-17.svg" />
+    <Content Include="Content\covers\demo-18.svg" />
+    <Content Include="Content\covers\demo-19.svg" />
+    <Content Include="Content\covers\demo-20.svg" />
+    <Content Include="Content\covers\demo-21.svg" />
+    <Content Include="Content\covers\demo-22.svg" />
+    <Content Include="Content\covers\demo-23.svg" />
+    <Content Include="Content\covers\demo-24.svg" />
+    <Content Include="Content\covers\demo-25.svg" />
+    <Content Include="Content\covers\demo-26.svg" />
+    <Content Include="Content\covers\demo-27.svg" />
+    <Content Include="Content\covers\demo-28.svg" />
+    <Content Include="Content\covers\demo-29.svg" />
+    <Content Include="Content\covers\demo-30.svg" />
+    <Content Include="Content\covers\demo-31.svg" />
+    <Content Include="Content\covers\demo-32.svg" />
+    <Content Include="Content\covers\demo-33.svg" />
+    <Content Include="Content\covers\demo-34.svg" />
+    <Content Include="Content\covers\demo-35.svg" />
+    <Content Include="Content\covers\demo-36.svg" />
+  </ItemGroup>
 </Project>

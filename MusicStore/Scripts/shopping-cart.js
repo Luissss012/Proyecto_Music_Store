@@ -10,6 +10,8 @@
         var snapshot = $(nodes).filter("section[data-cart-snapshot='true']");
         if (snapshot.length !== 1) { return false; }
         region.empty().append(snapshot);
+        $("[data-global-cart-count]").text(snapshot.attr("data-count"));
+        $("[data-global-cart-total]").text(snapshot.attr("data-total"));
         return true;
     }
     function reportError() {

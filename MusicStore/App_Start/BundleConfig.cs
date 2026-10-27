@@ -8,6 +8,7 @@ namespace MusicStore
         // Para obtener más información sobre las uniones, visite https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/store").Include("~/Scripts/store-ui.js"));
             bundles.Add(new ScriptBundle("~/bundles/checkout").Include("~/Scripts/checkout-validation.js"));
             bundles.Add(new ScriptBundle("~/bundles/cart").Include("~/Scripts/shopping-cart.js"));
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -27,7 +28,8 @@ namespace MusicStore
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/admin.css"));
+                      "~/Content/admin.css",
+                      "~/Content/storefront.css"));
         }
     }
 }

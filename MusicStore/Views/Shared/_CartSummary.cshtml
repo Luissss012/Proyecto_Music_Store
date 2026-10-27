@@ -1,0 +1,5 @@
+﻿@model MusicStore.Models.ShoppingCartViewModel
+<a class="cart-summary" href="@Url.Action("Index", "ShoppingCart")" aria-live="polite" aria-atomic="true">
+    Carrito <span data-global-cart-count>@(Model == null ? "—" : Model.Count.ToString())</span>
+    <small data-global-cart-total>@(Model == null ? "No disponible" : Model.Total.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture))</small>
+</a>

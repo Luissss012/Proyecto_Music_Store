@@ -1,0 +1,1 @@
+﻿(function () { "use strict"; document.addEventListener("error", function (event) { var img = event.target; if (img.tagName === "IMG" && img.hasAttribute("data-cover-fallback")) { var fallback = img.getAttribute("data-cover-fallback"); img.removeAttribute("data-cover-fallback"); img.src = fallback; } }, true); }());

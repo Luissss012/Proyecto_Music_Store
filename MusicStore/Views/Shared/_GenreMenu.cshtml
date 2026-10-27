@@ -1,0 +1,5 @@
+﻿@model IEnumerable<MusicStore.Models.Genre>
+<nav class="genre-menu" aria-label="Géneros musicales">
+    <a href="@Url.Action("Index", "Store")" class="genre-all">Todos los géneros</a>
+    @foreach (var genre in Model) { <a href="@Url.Action("Browse", "Store", new { genre = genre.Name })">@genre.Name</a> }
+</nav>

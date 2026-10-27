@@ -1,14 +1,2 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>Error al procesar la solicitud.</h2>
-    </hgroup>
-</body>
-</html>
+﻿@{ Layout = null; Response.StatusCode = 500; Response.TrySkipIisCustomErrors = true; }
+<!doctype html><html lang="es"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>No pudimos completar la solicitud - Music Store</title></head><body style="font:18px Arial;background:#f5f2eb;color:#22251f;padding:8vw;max-width:800px"><p>MUSIC STORE / 500</p><h1>No pudimos completar la solicitud</h1><p>Vuelve a la tienda para continuar. Si estabas comprando, revisa Mis pedidos antes de reintentar.</p><a href="@Url.Action("Index", "Store")">Volver a la colección</a></body></html>

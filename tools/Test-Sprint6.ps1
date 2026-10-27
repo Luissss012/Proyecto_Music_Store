@@ -130,7 +130,7 @@ END CATCH;
  $response=Post '/ShoppingCart/RemoveFromCart' $a @{__RequestVerificationToken=(Token $pageA);id=$record;version=$version}
  Assert-Test ([int]$response.StatusCode -eq 404) 'Repeated removal handled safely'
  $pageA=Add $albumId $a $pageA $false
- Assert-Test ($pageA.BaseResponse.RequestMessage.RequestUri.AbsolutePath -eq '/ShoppingCart' -and $pageA.Content.Contains('<html>')) 'Non-JavaScript add follows redirect to cart'
+ Assert-Test ($pageA.BaseResponse.RequestMessage.RequestUri.AbsolutePath -eq '/ShoppingCart' -and $pageA.Content -match '<html\b') 'Non-JavaScript add follows redirect to cart'
  $line=FirstLine $pageA; $record=Field $line 'id'
  $pageA=Post '/ShoppingCart/UpdateQuantity' $a @{__RequestVerificationToken=(Token $pageA);id=$record;quantity='2';version=(Field $line 'version')} $false
  Assert-Test ((Count $pageA) -eq 2 -and $pageA.BaseResponse.RequestMessage.RequestUri.AbsolutePath -eq '/ShoppingCart') 'Non-JavaScript update remains functional'

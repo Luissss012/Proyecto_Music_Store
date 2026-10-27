@@ -1,29 +1,15 @@
-﻿@{
-    ViewBag.Title = "Inicio";
+﻿@model IEnumerable<MusicStore.Models.Album>
+@{ ViewBag.Title = "Tu próxima gran escucha"; }
+<section class="store-hero">
+<div class="hero-copy"><p class="eyebrow">MUSIC STORE / SONIDOS PARA DESCUBRIR</p><h1>Hay un disco<br />para cada<br /><em>momento.</em></h1><p class="hero-description">Encuentra tu próximo favorito. Explora géneros, descubre artistas y dale un nuevo ritmo a tu colección.</p><a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Store")">Explorar la colección ↗</a><p class="hero-note">Una tienda de demostración. Toda la música, sin cobros reales.</p></div>
+<div class="hero-art" aria-hidden="true"><div class="vinyl-disc"></div><div class="record-sleeve"><span>MS / 008</span><strong>EL LADO<br />QUE TE<br /><i>MUEVE.</i></strong><span>SELECCIÓN MUSIC STORE · 2026</span></div><div class="hero-sticker">DALE<br />PLAY ↗</div></div>
+</section>
+<section class="featured-section"><div class="section-heading"><div><p class="eyebrow">TU SIGUIENTE DESCUBRIMIENTO</p><h2>@((bool)ViewBag.HasSales ? "Los más vendidos" : "Recién llegados")</h2></div><a href="@Url.Action("Index", "Store")">Ver géneros ↗</a></div>
+<p class="section-intro">@((bool)ViewBag.HasSales ? "Los favoritos de la tienda, ordenados por unidades compradas." : "La colección está lista para explorar. Los más vendidos aparecerán después de las primeras compras.")</p>
+@if (!Model.Any()) { <p class="music-store-card">Todavía no hay álbumes disponibles. Vuelve pronto para descubrir la colección.</p> }
+@Html.Partial("_Albums", Model)
+</section>
+@if ((bool)ViewBag.HasSales) {
+<section class="featured-section mt-5"><div class="section-heading"><div><p class="eyebrow">EXPLORA ALGO DIFERENTE</p><h2>Nuevos sonidos</h2></div><a href="@Url.Action("Index", "Store")">Toda la colección ↗</a></div><p class="section-intro">Las últimas incorporaciones al catálogo, listas para tu próxima escucha.</p>@Html.Partial("_Albums", (IEnumerable<MusicStore.Models.Album>)ViewBag.NewArrivals)</section>
 }
-
-<div class="music-store-card text-center">
-
-    <h1>ASP.NET MVC Music Store</h1>
-
-    <p class="lead">
-        Explora nuestro catálogo musical por géneros y descubre los álbumes disponibles.
-    </p>
-
-    <p>
-        Este proyecto implementa una tienda de música utilizando
-        ASP.NET MVC, Razor y una arquitectura basada en el patrón
-        Modelo-Vista-Controlador.
-    </p>
-
-    <p>
-        @Html.ActionLink(
-                 "Explorar catálogo",
-                 "Index",
-                 "Store",
-                 null,
-                 new { @class = "btn btn-dark btn-lg" }
-             )
-    </p>
-
-</div>
+<section class="store-manifesto"><span>01 / EXPLORA</span><h2>Tu colección empieza<br />con una buena escucha.</h2><a class="btn btn-outline-dark" href="@Url.Action("Index", "Store")">Encuentra tu género ↗</a></section>

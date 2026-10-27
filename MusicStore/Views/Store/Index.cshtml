@@ -1,26 +1,8 @@
 ﻿@model IEnumerable<MusicStore.Models.Genre>
-
-@{
-    ViewBag.Title = "Tienda";
-}
-
-<div class="music-store-card">
-    <h2>Catálogo de géneros</h2>
-
-    <p>
-        Explora nuestra colección musical seleccionando uno de los géneros disponibles.
-    </p>
+@{ ViewBag.Title = "Explora la colección"; }
+<header class="page-heading"><p class="eyebrow">LA COLECCIÓN / GÉNEROS</p><h1>Encuentra tu frecuencia.</h1><p>Del primer acorde al último beat. Elige un género y descubre lo que suena contigo.</p></header>
+<div class="genre-grid">
+@{ var number = 0; }
+@foreach (var genre in Model) { number++; <a class="genre-card" href="@Url.Action("Browse", new { genre = genre.Name })"><span>@number.ToString("00") / MUSIC STORE</span><h2>@genre.Name</h2><span>Explorar álbumes ↗</span></a> }
 </div>
-
-<ul class="music-store-list">
-    @foreach (var genre in Model)
-    {
-        <li>
-            @Html.ActionLink(
-                     genre.Name,
-                     "Browse",
-                     new { genre = genre.Name }
-                 )
-        </li>
-    }
-</ul>
+@if (!Model.Any()) { <p class="music-store-card">Todavía no hay géneros disponibles.</p> }

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MusicStore.Models.Album>
+@using System
+<div class="album-grid">
+@foreach (var album in Model)
+{
+    var cover = album.AlbumArtUrl;
+    Uri uri;
+    var safe = !string.IsNullOrWhiteSpace(cover) && ((cover.StartsWith("~/Content/", StringComparison.OrdinalIgnoreCase) && !cover.Contains("..")) || (Uri.TryCreate(cover, UriKind.Absolute, out uri) && uri.Scheme == "https"));
+    <article class="album-card" data-album-id="@album.AlbumId">
+        <a class="album-art" href="@Url.Action("Details", "Store", new { id = album.AlbumId })">
+            <img src="@(safe ? Url.Content(cover) : Url.Content("~/Content/covers/default.svg"))" alt="Portada de @album.Title" loading="lazy" width="400" height="400" referrerpolicy="no-referrer" data-cover-fallback="@Url.Content("~/Content/covers/default.svg")" />
+        </a>
+        <div class="album-meta"><span>@album.Genre.Name</span><strong>@album.Price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)</strong></div>
+        <h3>@Html.ActionLink(album.Title, "Details", "Store", new { id = album.AlbumId }, null)</h3>
+        <p>@album.Artist.Name</p>
+    </article>
+}
+</div>

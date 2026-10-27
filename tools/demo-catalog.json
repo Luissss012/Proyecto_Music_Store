@@ -1,0 +1,254 @@
+[
+  {
+    "genre": "Rock",
+    "artist": "Órbita Norte",
+    "title": "Kilómetros de luz",
+    "price": "8.99",
+    "cover": "~/Content/covers/demo-01.svg"
+  },
+  {
+    "genre": "Rock",
+    "artist": "Órbita Norte",
+    "title": "Ruido de fondo",
+    "price": "9.99",
+    "cover": "~/Content/covers/demo-02.svg"
+  },
+  {
+    "genre": "Rock",
+    "artist": "Órbita Norte",
+    "title": "El último verano",
+    "price": "10.99",
+    "cover": "~/Content/covers/demo-03.svg"
+  },
+  {
+    "genre": "Jazz",
+    "artist": "Clara y el Mar",
+    "title": "Azul de madrugada",
+    "price": "9.49",
+    "cover": "~/Content/covers/demo-04.svg"
+  },
+  {
+    "genre": "Jazz",
+    "artist": "Clara y el Mar",
+    "title": "Café en la esquina",
+    "price": "10.49",
+    "cover": "~/Content/covers/demo-05.svg"
+  },
+  {
+    "genre": "Jazz",
+    "artist": "Clara y el Mar",
+    "title": "Después de la lluvia",
+    "price": "11.49",
+    "cover": "~/Content/covers/demo-06.svg"
+  },
+  {
+    "genre": "Pop",
+    "artist": "Atlas Nocturno",
+    "title": "Todo vuelve a brillar",
+    "price": "9.99",
+    "cover": "~/Content/covers/demo-07.svg"
+  },
+  {
+    "genre": "Pop",
+    "artist": "Atlas Nocturno",
+    "title": "Días de sol",
+    "price": "10.99",
+    "cover": "~/Content/covers/demo-08.svg"
+  },
+  {
+    "genre": "Pop",
+    "artist": "Atlas Nocturno",
+    "title": "Sin mirar atrás",
+    "price": "11.99",
+    "cover": "~/Content/covers/demo-09.svg"
+  },
+  {
+    "genre": "Electrónica",
+    "artist": "Circuito Lunar",
+    "title": "Frecuencia cero",
+    "price": "10.49",
+    "cover": "~/Content/covers/demo-10.svg"
+  },
+  {
+    "genre": "Electrónica",
+    "artist": "Circuito Lunar",
+    "title": "La ciudad despierta",
+    "price": "11.49",
+    "cover": "~/Content/covers/demo-11.svg"
+  },
+  {
+    "genre": "Electrónica",
+    "artist": "Circuito Lunar",
+    "title": "Pulso infinito",
+    "price": "12.49",
+    "cover": "~/Content/covers/demo-12.svg"
+  },
+  {
+    "genre": "Indie",
+    "artist": "Las Horas",
+    "title": "Jardín interior",
+    "price": "10.99",
+    "cover": "~/Content/covers/demo-13.svg"
+  },
+  {
+    "genre": "Indie",
+    "artist": "Las Horas",
+    "title": "Las cosas pequeñas",
+    "price": "11.99",
+    "cover": "~/Content/covers/demo-14.svg"
+  },
+  {
+    "genre": "Indie",
+    "artist": "Las Horas",
+    "title": "Domingo eterno",
+    "price": "12.99",
+    "cover": "~/Content/covers/demo-15.svg"
+  },
+  {
+    "genre": "Soul",
+    "artist": "Alma Serena",
+    "title": "Entre líneas",
+    "price": "11.49",
+    "cover": "~/Content/covers/demo-16.svg"
+  },
+  {
+    "genre": "Soul",
+    "artist": "Alma Serena",
+    "title": "Una voz al viento",
+    "price": "12.49",
+    "cover": "~/Content/covers/demo-17.svg"
+  },
+  {
+    "genre": "Soul",
+    "artist": "Alma Serena",
+    "title": "Piel de canción",
+    "price": "13.49",
+    "cover": "~/Content/covers/demo-18.svg"
+  },
+  {
+    "genre": "Hip Hop",
+    "artist": "Distrito Sur",
+    "title": "Desde mi ventana",
+    "price": "11.99",
+    "cover": "~/Content/covers/demo-19.svg"
+  },
+  {
+    "genre": "Hip Hop",
+    "artist": "Distrito Sur",
+    "title": "Rimas del barrio",
+    "price": "12.99",
+    "cover": "~/Content/covers/demo-20.svg"
+  },
+  {
+    "genre": "Hip Hop",
+    "artist": "Distrito Sur",
+    "title": "Al otro lado",
+    "price": "13.99",
+    "cover": "~/Content/covers/demo-21.svg"
+  },
+  {
+    "genre": "Latina",
+    "artist": "Isla Naranja",
+    "title": "Costa adentro",
+    "price": "12.49",
+    "cover": "~/Content/covers/demo-22.svg"
+  },
+  {
+    "genre": "Latina",
+    "artist": "Isla Naranja",
+    "title": "Baila la tarde",
+    "price": "13.49",
+    "cover": "~/Content/covers/demo-23.svg"
+  },
+  {
+    "genre": "Latina",
+    "artist": "Isla Naranja",
+    "title": "Sal y luna",
+    "price": "14.49",
+    "cover": "~/Content/covers/demo-24.svg"
+  },
+  {
+    "genre": "Clásica",
+    "artist": "Ensamble Aurora",
+    "title": "Estaciones del alma",
+    "price": "12.99",
+    "cover": "~/Content/covers/demo-25.svg"
+  },
+  {
+    "genre": "Clásica",
+    "artist": "Ensamble Aurora",
+    "title": "La forma del silencio",
+    "price": "13.99",
+    "cover": "~/Content/covers/demo-26.svg"
+  },
+  {
+    "genre": "Clásica",
+    "artist": "Ensamble Aurora",
+    "title": "Suite para el alba",
+    "price": "14.99",
+    "cover": "~/Content/covers/demo-27.svg"
+  },
+  {
+    "genre": "Ambient",
+    "artist": "Nube Lenta",
+    "title": "Paisaje suspendido",
+    "price": "13.49",
+    "cover": "~/Content/covers/demo-28.svg"
+  },
+  {
+    "genre": "Ambient",
+    "artist": "Nube Lenta",
+    "title": "Tiempo de niebla",
+    "price": "14.49",
+    "cover": "~/Content/covers/demo-29.svg"
+  },
+  {
+    "genre": "Ambient",
+    "artist": "Nube Lenta",
+    "title": "La luz que queda",
+    "price": "15.49",
+    "cover": "~/Content/covers/demo-30.svg"
+  },
+  {
+    "genre": "Funk",
+    "artist": "Prisma Club",
+    "title": "Movimiento circular",
+    "price": "13.99",
+    "cover": "~/Content/covers/demo-31.svg"
+  },
+  {
+    "genre": "Funk",
+    "artist": "Prisma Club",
+    "title": "Noche de neón",
+    "price": "14.99",
+    "cover": "~/Content/covers/demo-32.svg"
+  },
+  {
+    "genre": "Funk",
+    "artist": "Prisma Club",
+    "title": "Fuera de órbita",
+    "price": "15.99",
+    "cover": "~/Content/covers/demo-33.svg"
+  },
+  {
+    "genre": "Blues",
+    "artist": "Río Azul",
+    "title": "Historias del camino",
+    "price": "14.49",
+    "cover": "~/Content/covers/demo-34.svg"
+  },
+  {
+    "genre": "Blues",
+    "artist": "Río Azul",
+    "title": "Cuerdas de humo",
+    "price": "15.49",
+    "cover": "~/Content/covers/demo-35.svg"
+  },
+  {
+    "genre": "Blues",
+    "artist": "Río Azul",
+    "title": "Un lugar al sur",
+    "price": "16.49",
+    "cover": "~/Content/covers/demo-36.svg"
+  }
+]
